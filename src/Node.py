@@ -6,6 +6,7 @@ class Node:
         self.moves = moves
 
     def countCost (self):
+        # Menghitung estimasi cost
         g = 0
         for i in range(len(self.puzzle)):
             if (self.puzzle[i]!=16 and self.puzzle[i]!=i+1):

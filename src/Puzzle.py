@@ -21,32 +21,38 @@ def kurang_i(array):
 def isSolvable(idx16, total):
     # Menentukan apakah puzzle bisa diselesaikan
     x = 0
-    if (idx16 == 1 or idx16 == 3 or idx16 == 4 or idx16 == 6 or idx16 == 9 or idx16 == 11 or idx16 == 12 or idx16 == 14):
+    shaded = [1,3,4,6,9,11,12,14]
+    if (idx16 in shaded):
         x = 1
     print("\nsum(Kurang(i)) + X = " + str(total + x))
     return (total + x)%2 == 0
 
 def isMoveableLeft(array):
+    # Menentukan apakah ubin kosong bisa digerakkan ke kiri
     idx = array.index(16)
     prohibited = [0, 4, 8, 12]
     return not (idx in prohibited)
 
 def isMoveableRight(array):
+    # Menentukan apakah ubin kosong bisa digerakkan ke kanan
     idx = array.index(16)
     prohibited = [3, 7, 11, 15]
     return not (idx in prohibited)
 
 def isMoveableUp(array):
+    # Menentukan apakah ubin kosong bisa digerakkan ke atas
     idx = array.index(16)
     prohibited = [0, 1, 2, 3]
     return not (idx in prohibited)
 
 def isMoveableDown(array):
+    # Menentukan apakah ubin kosong bisa digerakkan ke bawah
     idx = array.index(16)
     prohibited = [12, 13, 14, 15]
     return not (idx in prohibited)
 
 def moveLeft(array):
+    # Menggerakkan ubin kosong ke kiri
     idx = array.index(16)
     newArray = [array[i] for i in range(16)]
     temp = newArray[idx-1]
@@ -55,6 +61,7 @@ def moveLeft(array):
     return newArray
 
 def moveRight(array):
+    # Menggerakkan ubin kosong ke kanan
     idx = array.index(16)
     newArray = [array[i] for i in range(16)]
     temp = newArray[idx+1]
@@ -63,6 +70,7 @@ def moveRight(array):
     return newArray
 
 def moveUp(array):
+    # Menggerakkan ubin kosong ke atas
     idx = array.index(16)
     newArray = [array[i] for i in range(16)]
     temp = newArray[idx-4]
@@ -71,6 +79,7 @@ def moveUp(array):
     return newArray
 
 def moveDown(array):
+    # Menggerakkan ubin kosong ke bawah
     idx = array.index(16)
     newArray = [array[i] for i in range(16)]
     temp = newArray[idx+4]
@@ -79,6 +88,7 @@ def moveDown(array):
     return newArray
 
 def isEverGenerated(newArray, generated):
+    # Menentukan apakah newArray sudah pernah dihasilkan sebelumnya
     found = False
     i = 0
     while (i < len(generated) and not found):
@@ -89,6 +99,7 @@ def isEverGenerated(newArray, generated):
     return found
 
 def generate(node, generated):
+    # Menghasilkan semua anak yang mungkin dari suatu simpul
     lastmove = node.moves[len(node.moves)-1]
     newArrays = []
     newMoves = []
@@ -115,6 +126,7 @@ def generate(node, generated):
     return newArrays, newMoves
 
 def action(array, direction):
+    # Menggerakkan ubin kosong ke arah direction
     if (direction == "initial"):
         return array
     elif (direction == "left"):
@@ -127,6 +139,7 @@ def action(array, direction):
         return moveDown(array)
 
 def display(array):
+    # Mencetak array
     for i in range(4):
         for j in range(4):
             if (array[i*4+j] == 16):

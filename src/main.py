@@ -19,6 +19,7 @@ def readFile():
     return array
 
 def solve(array):
+    # Menyelesaikan puzzle
     idx16, total = kurang_i(array)
     found = False
     if (isSolvable(idx16, total)):
