@@ -15,7 +15,8 @@ def kurang_i(array):
     for i in range(len(kurangi)):
         if (i < 9):
             print(' ', end='')
-        print(i+1, kurangi[i])
+        if (i < 15):
+            print(i+1, kurangi[i])
     return idx16, total
 
 def isSolvable(idx16, total):
